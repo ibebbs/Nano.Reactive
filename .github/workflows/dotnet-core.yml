@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-      name: Build nanoFramework/MBN Click Drivers
+      name: Build Nano.Reactive
       timeout-minutes: 15
       runs-on: windows-latest
       env:
@@ -40,15 +40,19 @@ jobs:
 
       - name: Restore nugets
         run: nuget restore ${{ env.solution }} -ConfigFile nuget.config
+        working-directory: main
 
       - name: Build Abstractions
         run: msbuild Nano.Reactive.Abstractions/Nano.Reactive.Abstractions.nfproj /p:Configuration=${{ env.buildConfiguration }}
+        working-directory: main
         
       - name: Build Core
         run: msbuild Nano.Reactive.Core/Nano.Reactive.Core.nfproj /p:Configuration=${{ env.buildConfiguration }}
+        working-directory: main
         
       - name: Build Linq
         run: msbuild Nano.Reactive.Linq/Nano.Reactive.Linq.nfproj /p:Configuration=${{ env.buildConfiguration }}
+        working-directory: main
 
     #steps:
     #- uses: actions/checkout@v2
