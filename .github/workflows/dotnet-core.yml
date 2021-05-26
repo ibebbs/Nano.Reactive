@@ -1,0 +1,70 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+      name: Build nanoFramework/MBN Click Drivers
+      timeout-minutes: 15
+      runs-on: windows-latest
+      env:
+        solution: 'Nano.Reactive.sln'
+        buildPlatform: 'Any CPU'
+        buildConfiguration: 'Release'
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          path: main
+      - name: Checkout tools repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          repository: nanoframework/nf-tools
+          path: tools
+      - name: Install build components for nanoFramework
+        run: ./github-actions/install-nf-build-components.ps1
+        working-directory: tools
+
+      - name: Setup MSBuild Path
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      # https://github.com/NuGet/setup-nuget
+      - name: Install NuGet client
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: '5.8.0'
+
+      - name: Restore nugets
+        run: nuget restore ${{ env.solution }} -ConfigFile nuget.config
+
+      - name: Build Abstractions
+        run: msbuild Nano.Reactive.Abstractions/Nano.Reactive.Abstractions.nfproj /p:Configuration=${{ env.buildConfiguration }}
+        
+      - name: Build Core
+        run: msbuild Nano.Reactive.Core/Nano.Reactive.Core.nfproj /p:Configuration=${{ env.buildConfiguration }}
+        
+      - name: Build Linq
+        run: msbuild Nano.Reactive.Linq/Nano.Reactive.Linq.nfproj /p:Configuration=${{ env.buildConfiguration }}
+
+    #steps:
+    #- uses: actions/checkout@v2
+    #- name: Setup .NET Core
+    #  uses: actions/setup-dotnet@v1
+    #  with:
+    #    dotnet-version: 3.1.301
+    #- name: Setup NuGet
+    #  uses: NuGet/setup-nuget@v1.0.5
+    #  with:
+    #    nuget-version: latest
+    #- name: Install dependencies
+    #  run: dotnet restore ./Popolo.Types/Popolo.Types.csproj
+    #- name: Build
+    #  run: dotnet build ./Popolo.Types/Popolo.Types.csproj --configuration Release --no-restore
+    #- name: Pack
+    #  run: dotnet pack ./Popolo.Types/Popolo.Types.csproj -p:PackageVersion=1.0.$GITHUB_RUN_NUMBER --configuration Release -o nupkg --no-build
+    #- name: Push to GitHub Packages
+    #  run: nuget push nupkg/*.nupkg -Source "https://nuget.pkg.github.com/ibebbs/index.json" -ApiKey ${{ secrets.GITHUB_TOKEN }}

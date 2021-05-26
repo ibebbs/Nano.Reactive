@@ -22,6 +22,8 @@
     <Company>Cogenity</Company>
     <Product>Nano.Reactive</Product>
     <Description>Reactive Extensions for Nano Framework</Description>
+    <PackageProjectUrl>https://github.com/ibebbs/Nano.Reactive</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ibebbs/Nano.Reactive</RepositoryUrl>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>

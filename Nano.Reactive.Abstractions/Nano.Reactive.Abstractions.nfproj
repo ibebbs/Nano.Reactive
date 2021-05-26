@@ -15,6 +15,15 @@
     <RootNamespace>Nano.Reactive</RootNamespace>
     <AssemblyName>Nano.Reactive.Abstractions</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Nano.Reactive.Abstractions</PackageId>
+    <Version>0.1</Version>
+    <Authors>ibebbs</Authors>
+    <Company>Cogenity</Company>
+    <Product>Nano.Reactive</Product>
+    <Description>Reactive Extensions for Nano Framework</Description>
+    <PackageProjectUrl>https://github.com/ibebbs/Nano.Reactive</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ibebbs/Nano.Reactive</RepositoryUrl>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
