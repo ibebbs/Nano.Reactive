@@ -19,6 +19,8 @@ namespace Nano.Reactive
             }
         }
 
+        public static readonly IDisposable Empty = new ActionDisposable(() => { });
+
         public static IDisposable Create(Action action)
         {
             return new ActionDisposable(action);

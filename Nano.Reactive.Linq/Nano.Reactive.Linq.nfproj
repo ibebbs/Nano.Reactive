@@ -27,7 +27,18 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="Observable.cs" />
+    <Compile Include="Observable.Concat.cs" />
+    <Compile Include="Observable.FromEvent.cs" />
+    <Compile Include="Observable.Do.cs" />
+    <Compile Include="Observable.Merge.cs" />
+    <Compile Include="Observable.Never.cs" />
+    <Compile Include="Observable.OfType.cs" />
+    <Compile Include="Observable.Publish.cs" />
+    <Compile Include="Observable.Return.cs" />
+    <Compile Include="Observable.Select.cs" />
+    <Compile Include="Observable.StartWith.cs" />
+    <Compile Include="Observable.Switch.cs" />
+    <Compile Include="Observer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,8 @@
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
     <Compile Include="Disposable.cs" />
+    <Compile Include="Disposables\CompositeDisposable.cs" />
+    <Compile Include="Disposables\SerialDisposable.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -43,9 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nano.Reactive.Abstractions\Nano.Reactive.Abstractions.nfproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Disposables\" />
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
   <ProjectExtensions>

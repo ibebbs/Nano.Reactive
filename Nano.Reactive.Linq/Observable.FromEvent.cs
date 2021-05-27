@@ -2,7 +2,7 @@
 
 namespace Nano.Reactive.Linq
 {
-    public static class Observable
+    public static partial class Observable
     {
         private class CreateObservable<T> : IObservable<T>
         {
